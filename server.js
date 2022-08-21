@@ -13,7 +13,9 @@ app.use(Gun.serve);
 app.use(express.static(__dirname));
 
 const server = app.listen(port, () => {
-  console.log("Listening at: http://localhost://" + port+__dirname);
+  console.log("Listening at: http://localhost://" + port + __dirname);
 });
 
-Gun({ web: server });
+Gun({
+  web: server,
+});
