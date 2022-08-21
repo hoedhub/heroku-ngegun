@@ -12,7 +12,7 @@
         `https://${serverName}.herokuapp.com/gun`,
       ];
       const listenPeers = [
-        ...allPeers.filter((peer) => peer !== window.location),
+        ...allPeers.filter((peer) => peer !== `${window.location.hostname}/gun`),
       ];
       console.log("listenPeers", listenPeers);
     </script>
