@@ -4,10 +4,30 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="server.js"></script>
+    <script type="text/javascript">
+      const serverName = "ngegun";
+      const allPeers = [
+        `https://${serverName}.qovery.com/gun`,
+        `https://${serverName}.vercel.com/gun`,
+        `https://${serverName}.herokuapp.com/gun`,
+      ];
+      const listenPeers = [
+        ...allPeers.filter((peer) => peer !== window.location),
+      ];
+      console.log("listenPeers", listenPeers);
+    </script>
     <title>Document</title>
   </head>
   <body>
     server ngegun
+    <script type="text/javascript">
+      const serverElement = document.createElement("script");
+      serverElement.src = `/gun.js`;
+      document.getElementsByTagName("head")[0].appendChild(serverElement);
+      setTimeout(() => {
+        console.log("listenPeers", listenPeers);
+        Gun({ peers: [...listenPeers] });
+      }, 500);
+    </script>
   </body>
 </html>
