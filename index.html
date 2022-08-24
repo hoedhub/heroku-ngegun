@@ -19,7 +19,6 @@
             .put({ [`${window.location.hostname}`]: d.toDateString() }),
         1000
       );
-      gun.get("servers").on((peer) => console.log(peer));
       gun
         .get("servers")
         .on((peer) =>
@@ -34,10 +33,10 @@
               ).innerHTML = `"<div id='${window.location.hostname.replace(
                 /[.]/g,
                 ""
-              )}'>${peer}</div>"`)
+              )}'>${JSON.stringify(peer)}</div>"`)
             : (document.getElementById(
                 `${window.location.hostname.replace(/[.]/g, "")}`
-              ).innerText = peer)
+              ).innerText = JSON.stringify(peer))
         );
     </script>
   </body>
