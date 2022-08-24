@@ -19,6 +19,7 @@
             .put({ [`${window.location.hostname}`]: d.toDateString() }),
         1000
       );
+      gun.get("servers").on((peer) => console.log(peer));
       gun
         .get("servers")
         .on((peer) =>
