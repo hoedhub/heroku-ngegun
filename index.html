@@ -4,37 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript">
-      const serverName = "ngegun";
-      const allPeers = [
-        `https://${serverName}.qovery.com/gun`,
-        `https://${serverName}.vercel.com/gun`,
-        `https://${serverName}.herokuapp.com/gun`,
-      ];
-      const listenPeers = [
-        ...allPeers.filter((peer) => !peer.includes(window.location.hostname)),
-      ];
-      console.log(
-        "hostname",
-        window.location.hostname,
-        "listenPeers",
-        listenPeers
-      );
-    </script>
+    <script type="text/javascript" src="/gun.js"></script>
     <title>Document</title>
   </head>
   <body>
-    server ngegun
+    <div id="serverList"></div>
     <script type="text/javascript">
-      const serverElement = document.createElement("script");
-      serverElement.src = `/gun.js`;
-      async () => {
-        document.getElementsByTagName("head")[0].appendChild(serverElement);
-        await setTimeout(() => {
-          console.log("listenPeers", listenPeers);
-          Gun({ peers: [...listenPeers] });
-        }, 500);
-      };
+      let d = new Date();
+      var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
+      setInterval(
+        () =>
+          gun
+            .get("servers")
+            .put({ [`${window.location.hostname}`]: d.toDateString() }),
+        1000
+      );
+      gun
+        .get("servers")
+        .on((peer) =>
+          document.getElementById(
+            window.location.hostname.replace(/[.]/g, "")
+          ) === undefined ||
+          document.getElementById(
+            window.location.hostname.replace(/[.]/g, "")
+          ) === null
+            ? (document.getElementById(
+                "serverList"
+              ).innerHTML = `"<div id='${window.location.hostname.replace(
+                /[.]/g,
+                ""
+              )}'>${peer}</div>"`)
+            : (document.getElementById(
+                `${window.location.hostname.replace(/[.]/g, "")}`
+              ).innerText = peer)
+        );
     </script>
   </body>
 </html>
