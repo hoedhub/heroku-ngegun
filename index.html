@@ -22,7 +22,7 @@
         .get("servers")
         .map()
         .on((peer) =>
-          /*document.getElementById(
+          document.getElementById(
             peer.replace(/[.]/g, "")
           ) === undefined ||
           document.getElementById(
@@ -36,8 +36,7 @@
               )}'>${JSON.stringify(peer)}</div>"`)
             : (document.getElementById(
                 `${peer.replace(/[.]/g, "")}`
-              ).innerText = JSON.stringify(peer))*/
-           console.log(peer)
+              ).innerText = JSON.stringify(peer))
         );
     </script>
   </body>
