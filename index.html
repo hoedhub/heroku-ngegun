@@ -22,8 +22,8 @@
       gun
         .get("servers")
         .map()
-        .on((peer) =>/*
-          document.getElementById(peer.server.replace(/[.]/g, "")) ===
+        .on((peer) =>
+          /*document.getElementById(peer.server.replace(/[.]/g, "")) ===
             undefined ||
           document.getElementById(peer.server.replace(/[.]/g, "")) === null
             ? (document.getElementById(
@@ -35,7 +35,8 @@
             : (document.getElementById(
                 `${peer.server.replace(/[.]/g, "")}`
               ).innerText = peer.ping)*/
-              console.log(typeof peer, peer)
+          console.log(typeof peer, peer)
+        );
     </script>
   </body>
 </html>
