@@ -32,7 +32,7 @@
               ? (document.getElementById(
                   "serverList"
                 ).innerHTML = `<div id='${peer.server.replace(/[.]/g, "")}'>${
-                  ping.server
+                  peer.server
                 }: ${peer.ping}</div>`)
               : (document.getElementById(
                   `${peer.server.replace(/[.]/g, "")}`
