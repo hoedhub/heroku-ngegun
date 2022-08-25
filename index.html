@@ -23,19 +23,20 @@
         .get("servers")
         .map()
         .on((peer) =>
-          /*document.getElementById(peer.server.replace(/[.]/g, "")) ===
-            undefined ||
-          document.getElementById(peer.server.replace(/[.]/g, "")) === null
-            ? (document.getElementById(
-                "serverList"
-              ).innerHTML = `"<div id='${peer.server.replace(
-                /[.]/g,
-                ""
-              )}'>${JSON.stringify(peer)}</div>"`)
-            : (document.getElementById(
-                `${peer.server.replace(/[.]/g, "")}`
-              ).innerText = peer.ping)*/
-          console.log(typeof peer, peer)
+            typeof peer === "object" &&
+            (document.getElementById(peer.server.replace(/[.]/g, "")) !==
+              undefined ||
+              document.getElementById(peer.server.replace(/[.]/g, "")) === null)
+              ? (document.getElementById(
+                  "serverList"
+                ).innerHTML = `"<div id='${peer.server.replace(
+                  /[.]/g,
+                  ""
+                )}'>${JSON.stringify(peer)}</div>"`)
+              : (document.getElementById(
+                  `${peer.server.replace(/[.]/g, "")}`
+                ).innerText = peer.ping)
+          //console.log(typeof peer, peer)
         );
     </script>
   </body>
