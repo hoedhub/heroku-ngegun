@@ -31,10 +31,9 @@
                   null
               ? (document.getElementById(
                   "serverList"
-                ).innerHTML = `"<div id='${peer.server.replace(
-                  /[.]/g,
-                  ""
-                )}'>${JSON.stringify(peer)}</div>"`)
+                ).innerHTML = `"<div id='${peer.server.replace(/[.]/g, "")}'>${
+                  peer.ping
+                }</div>"`)
               : (document.getElementById(
                   `${peer.server.replace(/[.]/g, "")}`
                 ).innerText = peer.ping)
