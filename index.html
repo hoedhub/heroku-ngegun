@@ -13,30 +13,28 @@
       var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
       setInterval(
         () =>
-          gun
-            .get("servers")
-            .put({ [`${window.location.hostname}`]: Date.now().toString() }),
+          gun.get("servers").put({
+            server: `${window.location.hostname}`,
+            ping: `${Date.now()}`,
+          }),
         5000
       );
       gun
         .get("servers")
         .map()
         .on((peer) =>
-          document.getElementById(
-            peer.replace(/[.]/g, "")
-          ) === undefined ||
-          document.getElementById(
-            peer.replace(/[.]/g, "")
-          ) === null
+          document.getElementById(peer.server.replace(/[.]/g, "")) ===
+            undefined ||
+          document.getElementById(peer.server.replace(/[.]/g, "")) === null
             ? (document.getElementById(
                 "serverList"
-              ).innerHTML = `"<div id='${peer.replace(
+              ).innerHTML = `"<div id='${peer.server.replace(
                 /[.]/g,
                 ""
               )}'>${JSON.stringify(peer)}</div>"`)
             : (document.getElementById(
-                `${peer.replace(/[.]/g, "")}`
-              ).innerText = JSON.stringify(peer))
+                `${peer.server.replace(/[.]/g, "")}`
+              ).innerText = peer.ping)
         );
     </script>
   </body>
