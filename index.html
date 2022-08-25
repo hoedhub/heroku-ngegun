@@ -31,12 +31,12 @@
                   null
               ? (document.getElementById(
                   "serverList"
-                ).innerHTML = `"<div id='${peer.server.replace(/[.]/g, "")}'>${
-                  peer.ping
-                }</div>"`)
+                ).innerHTML = `<div id='${peer.server.replace(/[.]/g, "")}'>${
+                  ping.server
+                }: ${peer.ping}</div>`)
               : (document.getElementById(
                   `${peer.server.replace(/[.]/g, "")}`
-                ).innerText = peer.ping)
+                ).innerText = `${peer.server}: ${peer.ping}`)
           //console.log(typeof peer, peer)
         );
     </script>
