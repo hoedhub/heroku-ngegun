@@ -10,13 +10,12 @@
   <body>
     <div id="serverList"></div>
     <script type="text/javascript">
-      let d = new Date();
       var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
       setInterval(
         () =>
           gun
             .get("servers")
-            .put({ [`${window.location.hostname}`]: d.now().toString() }),
+            .put({ [`${window.location.hostname}`]: Date.now() }),
         5000
       );
       gun
