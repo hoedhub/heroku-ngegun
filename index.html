@@ -11,7 +11,6 @@
     <div id="serverList"></div>
     <script type="text/javascript">
       var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
-      gun.get("servers").put(null);
       setInterval(
         () =>
           gun.get("servers").set({
@@ -24,10 +23,12 @@
         .get("servers")
         .map()
         .on((peer) =>
-            peer.server !== undefined && peer.ping !== undefined &&
-            (document.getElementById(peer.server.replace(/[.]/g, "")) !==
-              undefined ||
-              document.getElementById(peer.server.replace(/[.]/g, "")) === null)
+            peer.server === undefined || peer.ping === undefined
+              ? null
+              : document.getElementById(peer.server.replace(/[.]/g, "")) !==
+                  undefined ||
+                document.getElementById(peer.server.replace(/[.]/g, "")) ===
+                  null
               ? (document.getElementById(
                   "serverList"
                 ).innerHTML = `"<div id='${peer.server.replace(
