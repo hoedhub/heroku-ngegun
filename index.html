@@ -11,6 +11,7 @@
     <div id="serverList"></div>
     <script type="text/javascript">
       var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
+      gun.get("servers").put(null);
       setInterval(
         () =>
           gun.get("servers").set({
