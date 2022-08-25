@@ -10,7 +10,7 @@
   <body>
     <div id="serverList"></div>
     <script type="text/javascript">
-      let d = new Date(24 * 3600 * 1000);
+      let d = new Date.now();
       var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
       setInterval(
         () =>
