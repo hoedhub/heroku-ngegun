@@ -15,7 +15,7 @@
         () =>
           gun
             .get("servers")
-            .put({ [`${window.location.hostname}`]: Date.now() }),
+            .put({ [`${window.location.hostname}`]: Date.now().toString() }),
         5000
       );
       gun
