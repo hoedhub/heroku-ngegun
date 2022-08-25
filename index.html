@@ -21,21 +21,22 @@
       );
       gun
         .get("servers")
+        .map()
         .on((peer) =>
           document.getElementById(
-            window.location.hostname.replace(/[.]/g, "")
+            peer.replace(/[.]/g, "")
           ) === undefined ||
           document.getElementById(
-            window.location.hostname.replace(/[.]/g, "")
+            peer.replace(/[.]/g, "")
           ) === null
             ? (document.getElementById(
                 "serverList"
-              ).innerHTML = `"<div id='${window.location.hostname.replace(
+              ).innerHTML = `"<div id='${peer.replace(
                 /[.]/g,
                 ""
               )}'>${JSON.stringify(peer)}</div>"`)
             : (document.getElementById(
-                `${window.location.hostname.replace(/[.]/g, "")}`
+                `${peer.replace(/[.]/g, "")}`
               ).innerText = JSON.stringify(peer))
         );
     </script>
