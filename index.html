@@ -13,7 +13,7 @@
       var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
       setInterval(
         () =>
-          gun.get("servers").put({
+          gun.get("servers").set({
             server: `${window.location.hostname}`,
             ping: `${Date.now()}`,
           }),
