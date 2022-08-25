@@ -23,7 +23,7 @@
         .get("servers")
         .map()
         .on((peer) =>
-            typeof peer === "object" &&
+            peer.server !== undefined && peer.ping !== undefined &&
             (document.getElementById(peer.server.replace(/[.]/g, "")) !==
               undefined ||
               document.getElementById(peer.server.replace(/[.]/g, "")) === null)
