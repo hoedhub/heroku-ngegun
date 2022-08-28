@@ -17,5 +17,6 @@ const server = app.listen(port, () => {
 });
 
 Gun({
+  peers: ["https://ngegun.glitch.me/gun"],
   web: server,
 });
