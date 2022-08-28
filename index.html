@@ -10,7 +10,7 @@
   <body>
     <div id="serverList"></div>
     <script type="text/javascript">
-      var gun = Gun({ peers: [`${window.location.hostname}/gun`] });
+      var gun = Gun({ peers: ["https://ngegun.glitch.me/gun",`${window.location.hostname}/gun`] });
       setInterval(
         () =>
           gun.get("servers").set({
