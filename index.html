@@ -4,40 +4,40 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="text/javascript" src="/gun.js"></script>
+    <script type="text/javascript" src="./gun.js"></script>
     <title>Document</title>
   </head>
   <body>
     <div id="serverList"></div>
     <script type="text/javascript">
       var gun = Gun({ peers: ["https://ngegun.glitch.me/gun",`${window.location.hostname}/gun`] });
+      let ping = `${Date.now()}`;
+      gun.get("servers").put(null);
+      gun.get("servers").get(`${window.location.hostname}`).put(ping);
       setInterval(
         () =>
-          gun.get("servers").set({
-            server: `${window.location.hostname}`,
-            ping: `${Date.now()}`,
-          }),
+          ping = `${Date.now()}`,
         5000
       );
       gun
         .get("servers")
         .map()
         .on((peer) =>
-            peer.server === undefined || peer.ping === undefined
-              ? null
-              : document.getElementById(peer.server.replace(/[.]/g, "")) !==
-                  undefined ||
-                document.getElementById(peer.server.replace(/[.]/g, "")) ===
-                  null
-              ? (document.getElementById(
-                  "serverList"
-                ).innerHTML = `<div id='${peer.server.replace(/[.]/g, "")}'>${
-                  peer.server
-                }: ${peer.ping}</div>`)
-              : (document.getElementById(
-                  `${peer.server.replace(/[.]/g, "")}`
-                ).innerText = `${peer.server}: ${peer.ping}`)
-          //console.log(typeof peer, peer)
+            // peer.server === undefined || peer.ping === undefined
+            //   ? null
+            //   : document.getElementById(peer.server.replace(/[.]/g, "")) !==
+            //       undefined ||
+            //     document.getElementById(peer.server.replace(/[.]/g, "")) ===
+            //       null
+            //   ? (document.getElementById(
+            //       "serverList"
+            //     ).innerHTML = `<div id='${peer.server.replace(/[.]/g, "")}'>${
+            //       peer.server
+            //     }: ${peer.ping}</div>`)
+            //   : (document.getElementById(
+            //       `${peer.server.replace(/[.]/g, "")}`
+            //     ).innerText = `${peer.server}: ${peer.ping}`)
+          console.log("tes",typeof peer, peer)
         );
     </script>
   </body>
