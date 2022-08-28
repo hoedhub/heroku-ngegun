@@ -20,3 +20,7 @@ Gun({
   peers: ["https://ngegun.glitch.me/gun"],
   web: server,
 });
+
+let servers = gun.get("servers");
+let thisServer = servers.get("heroku");
+setInterval(() => thisServer.put(`${Date.now()}`), 5000);
