@@ -19,19 +19,19 @@
         (peer) =>
           peer.server === undefined || peer.ping === undefined
             ? null
-            : document.getElementById(peer.server.replace(/[.]/g, "")) !==
+            : document.getElementById("heroku") !==
                 undefined ||
-              document.getElementById(peer.server.replace(/[.]/g, "")) === null
+              document.getElementById("heroku") === null
             ? (document.getElementById(
                 "serverList"
-              ).innerHTML = `<div id='${peer.server.replace(/[.]/g, "")}'>${
+              ).innerHTML = `<div id="heroku">${
                 peer.server
-              }: <div id='p_${peer.server.replace(/[.]/g, "")}'></div></div>`)
+              }: <div id='p_heroku'></div></div>`)
             : null
         // console.log(typeof peer, peer)
       );
       thisServer.on((ping) => {
-        document.getElementById("heroku").innerText = ping;
+        document.getElementById("p_heroku").innerText = ping || "disconnected";
       });
     </script>
   </body>
