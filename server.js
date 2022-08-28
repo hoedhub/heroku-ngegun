@@ -16,7 +16,7 @@ const server = app.listen(port, () => {
   console.log("Listening at: http://localhost://" + port + __dirname);
 });
 
-Gun({
+let gun = Gun({
   peers: ["https://ngegun.glitch.me/gun"],
   web: server,
 });
