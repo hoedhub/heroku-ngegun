@@ -14,7 +14,7 @@
         peers: ["https://ngegun.herokuapp.com/gun"],
       });
       let servers = gun.get("servers");
-      let thisServer = servers.get("glitch");
+      let thisServer = servers.get("heroku");
       servers.map().on(
         (peer) =>
           peer.server === undefined || peer.ping === undefined
@@ -31,7 +31,7 @@
         // console.log(typeof peer, peer)
       );
       thisServer.on((ping) => {
-        document.getElementById("glitch").innerText = ping;
+        document.getElementById("heroku").innerText = ping;
       });
     </script>
   </body>
