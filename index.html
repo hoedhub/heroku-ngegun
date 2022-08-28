@@ -10,35 +10,29 @@
   <body>
     <div id="serverList"></div>
     <script type="text/javascript">
-      var gun = Gun({ peers: ["https://ngegun.glitch.me/gun",`${window.location.hostname}/gun`] });
-      let ping = `${Date.now()}`;
-      gun.get("servers").put(null);
-      gun.get("servers").get(`${window.location.hostname}`).put(ping);
-      setInterval(
-        () =>
-          ping = `${Date.now()}`,
-        5000
+      var gun = Gun({
+        peers: ["https://ngegun.herokuapp.com/gun"],
+      });
+      let servers = gun.get("servers");
+      let thisServer = servers.get("glitch");
+      servers.map().on(
+        (peer) =>
+          peer.server === undefined || peer.ping === undefined
+            ? null
+            : document.getElementById(peer.server.replace(/[.]/g, "")) !==
+                undefined ||
+              document.getElementById(peer.server.replace(/[.]/g, "")) === null
+            ? (document.getElementById(
+                "serverList"
+              ).innerHTML = `<div id='${peer.server.replace(/[.]/g, "")}'>${
+                peer.server
+              }: <div id='p_${peer.server.replace(/[.]/g, "")}'></div></div>`)
+            : null
+        // console.log(typeof peer, peer)
       );
-      gun
-        .get("servers")
-        .map()
-        .on((peer) =>
-            // peer.server === undefined || peer.ping === undefined
-            //   ? null
-            //   : document.getElementById(peer.server.replace(/[.]/g, "")) !==
-            //       undefined ||
-            //     document.getElementById(peer.server.replace(/[.]/g, "")) ===
-            //       null
-            //   ? (document.getElementById(
-            //       "serverList"
-            //     ).innerHTML = `<div id='${peer.server.replace(/[.]/g, "")}'>${
-            //       peer.server
-            //     }: ${peer.ping}</div>`)
-            //   : (document.getElementById(
-            //       `${peer.server.replace(/[.]/g, "")}`
-            //     ).innerText = `${peer.server}: ${peer.ping}`)
-          console.log("tes",typeof peer, peer)
-        );
+      thisServer.on((ping) => {
+        document.getElementById("glitch").innerText = ping;
+      });
     </script>
   </body>
 </html>
