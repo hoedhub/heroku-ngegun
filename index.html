@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="text/javascript" src="./gun.js"></script>
+    <style>
+      #heroku {
+        display: flex;
+      }
+    </style>
     <title>Document</title>
   </head>
   <body>
@@ -14,7 +19,6 @@
         peers: ["https://ngegun.herokuapp.com/gun"],
       });
       let servers = gun.get("servers");
-      let thisServer = servers.get("heroku");
       servers.map().on(
         (peer) =>
           peer.server === undefined || peer.ping === undefined
