@@ -22,5 +22,5 @@ let gun = Gun({
 });
 
 let servers = gun.get("servers");
-let thisServer = servers.get("heroku");
-setInterval(() => thisServer.put(`${Date.now()}`), 5000);
+servers.put(null);
+setInterval(() => servers.put({heroku:`${Date.now()}`}), 5000);
