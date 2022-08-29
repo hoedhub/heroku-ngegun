@@ -29,7 +29,8 @@
               }: <div id='p_heroku'></div></div>`)
             : null
         // console.log(typeof peer, peer)
-      );
+      );      
+      let thisServer = servers.get("heroku");
       thisServer.on((ping) => {
         document.getElementById("p_heroku").innerText = ping || "disconnected";
       });
